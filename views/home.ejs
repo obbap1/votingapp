@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>Voting App</title>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "apikey",
+            authDomain: "auth domain",
+            databaseURL: "https:/fire.com",
+            projectId: "fir-111",
+            storageBucket: "",
+            messagingSenderId: "111"
+        };
+        firebase.initializeApp(config);
+</script>
+    </head>
+    <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#"><strong>Votex</strong></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                          <a class="nav-link" href="#"onclick={signInWithGoogle()} id="google-signin" >Log In <span class="sr-only">(current)</span></a>or <a class="nav-link" href="#"onclick={signUp()} id="google-signin" >Sign Up <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#" onclick={signout()} id="signout">Sign Out</a>
+                        </li>
+                        <li class="nav-item">
+                                <img src="" id="google-pic" width="80" height="50" >
+                        </li>
+                        
+                      </ul>
+                    </div>
+            </nav>
+        <div class="container"></div>
+        <p id="para">Add Restaurant: <input id="addRestaurant" /></p>
+        <button class="btn btn-primary" onclick="{addRestaurant()}">Submit</button>
+        <div class="row" id="row">
+            
+            <%let keys = Object.keys(restaurants) %>
+            <%keys.forEach(key=>{%>
+                <div class="col-md-3 col-xs-12" style="margin-left:30px;">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><%= restaurants[key].name %></span>
+                            <p>Votes: <%=restaurants[key].Votes%></p>
+                            
+                        </div>
+                        <div class="card-action">
+                            <button class="btn">Upvote<i class="material-icons">add</i></a>
+                            <button class="btn">Downvote<i class="material-icons">arrow_downward</i></a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+                        
+<!--Footer-->
+<footer class="page-footer center-on-small-only stylish-color-dark">
+        
+            <!--Footer Links-->
+            <div class="container">
+                <div class="row">
+        
+                    <!--First column-->
+                    <div class="col-md-4">
+                        <h5 class="title mb-4 mt-3 font-bold">Votex</h5>
+                        <p>Add restaurants you feel are the best and let's vote!</p>
+                        <p id="google-display" style="color:green;" ></p>
+                    </div>
+                    <!--/.First column-->
+        
+                    <hr class="clearfix w-100 d-md-none">
+        
+                    <!--Second column-->
+                    <div class="col-md-2 mx-auto">
+                        <h5 class="title mb-4 mt-3 font-bold">About us</h5>
+                        <ul>
+                            <li><a href="#!">API</a></li>
+                            <li><a href="#!">Community</a></li>
+                            <li><a href="#!">Developers</a></li>
+                            <li><a href="#!">Documentation</a></li>
+                        </ul>
+                    </div>
+                    <!--/.Second column-->
+        
+                    <hr class="clearfix w-100 d-md-none">
+        
+                    <!--Third column-->
+                    <div class="col-md-2 mx-auto">
+                        <h5 class="title mb-4 mt-3 font-bold">Blog</h5>
+                        <ul>
+                            <li><a href="#!">How to vote</a></li>
+                            <li><a href="#!">Benefits of Votex</a></li>
+                            <li><a href="#!">Votex collaborates with firebase</a></li>
+                            <li><a href="#!">Vote safely</a></li>
+                        </ul>
+                    </div>
+                    <!--/.Third column-->
+        
+                    <hr class="clearfix w-100 d-md-none">
+        
+                    <!--Fourth column-->
+                    <div class="col-md-2 mx-auto">
+                        <h5 class="title mb-4 mt-3 font-bold ">Medium</h5>
+                        <ul>
+                            <li><a href="#!">Become an Author</a></li>
+                            <li><a href="#!">Careers</a></li>
+                            <li><a href="#!">News letter</a></li>
+                            <li><a href="#!">Help</a></li>
+                        </ul>
+                    </div>
+                    <!--/.Fourth column-->
+                </div>
+            </div>
+            <!--/.Footer Links-->
+        
+            <hr>
+            <hr>
+
+            <div class="row" id="socialmedia">
+                <div class="col-md-12">
+                    <div class="footer-socials mb-5 flex-center">
+                        <a class="icons-sm fb-ic"><i class="fa fa-facebook fa-lg white-text mr-md-4"> </i></a>
+                        <a class="icons-sm tw-ic"><i class="fa fa-twitter fa-lg white-text mr-md-4"> </i></a>
+                        <a class="icons-sm gplus-ic"><i class="fa fa-google-plus fa-lg white-text mr-md-4"> </i></a>
+                        <a class="icons-sm li-ic"><i class="fa fa-linkedin fa-lg white-text mr-md-4"> </i></a>
+                        <a class="icons-sm ins-ic"><i class="fa fa-instagram fa-lg white-text mr-md-4"> </i></a>
+                        <a class="icons-sm pin-ic"><i class="fa fa-pinterest fa-lg white-text"> </i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="footer-copyright">
+                <div class="container-fluid">
+                    © 2017 Copyright: <a href="https://www.manutd.com">Votex.com </a>
+        
+                </div>
+            </div>
+
+
+        <script src="js/firebaseAuth.js"></script>
+        <script src="js/firebaseVoting.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        
+        
+    </body>
+</html> 
